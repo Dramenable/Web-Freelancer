@@ -1,0 +1,253 @@
+:root{
+    --blanco:#ffffff;
+    --oscuro:#212121;
+    --primario:#FFC107;
+    --secundario:#0097A7;
+    --gris:#757575;
+    --grisClaro: #DFE9F3;
+
+}
+
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory;
+    
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+
+body{
+    font-size: 16px; /* 1rem = 10px */
+    font-family: 'Krub', sans-serif;
+    background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--blanco) 100%); /* Degradado de color de abajo hacia arriba*/
+}
+
+.boton:hover{
+    cursor: pointer;
+}
+.sombra{ /*https://www.cssmatic.com/box-shadow          https://caniuse.com para ver el soporte del codigo*/
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.54);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.54);
+    box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.54);
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 5rem;
+
+}
+
+h1{
+    font-size: 3.8rem;
+}
+h2{
+    font-size: 2.8rem;
+}
+h3{
+    font-size: 1.8rem;
+}
+
+h1,h2,h3 {
+    text-align: center;
+}
+
+.contenedor{
+    max-width: 120rem; /* anchura maxima, si puede tomar los 120 rem los toma, si no se hace chiquito, no lo fuerza dejando fuera de pantalla el contenido */
+    margin-top: 0;
+    margin-right: auto; /* este codigo se puede simplificar a margin:0 auto; */
+    margin-bottom: 0;   /* margin toma 4 valores en forma de manecilla de reloj, si solo hay 2 los replica*/
+    margin-left: auto;
+}
+
+.boton {
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 3rem;   
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: .5rem;
+    width: 90%;
+    text-align: center;
+    border: none;
+}
+@media (min-width: 768px) {
+    .boton{
+        width: auto;
+    }
+   
+}
+/* utilidades */
+.w-100{
+    width: 100%;
+}
+@media (min-width: 768px){
+    .w-100{
+        width: auto;
+    }
+}
+.flex{
+    display: flex;
+}
+.alinear-derecha{
+    justify-content: flex-end;
+}
+.nav-bg{
+
+    background-color: var(--secundario);
+}
+
+.navegacion-principal {
+    display: flex;  /* Con solo display flex los elementos se muestran de izquierda a derecha */
+    flex-direction: column; /* Con esto ahora se van a mostrar en forma de columna de arriba hacia abajo es mas para telefonos*/
+    
+}
+
+@media (min-width: 768px) { /* media queries para devolver la direccion en la que se muestran los elementos (flex direction) a su estado default para resolucion de pc's*/
+   .navegacion-principal{
+        flex-direction: row;   
+        justify-content: space-between; /* Alinear elementos horizontalmente*/
+   }
+}
+
+.navegacion-principal a{
+    display: block;
+    text-align: center; /*Para alinear la navegacion en resolucion de celular*/
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 1rem;
+    
+}
+
+.navegacion-principal a:hover{
+    background-color: var(--primario);
+    color: var(--oscuro);
+}
+
+.hero{
+    background-image: url(../img/hero.jpg) ; /*imagen de fondo*/
+    background-repeat: no-repeat; /*evita que la imagen se repita por default*/
+    background-size: cover; /*Cubre todo el ancho de la resolucion*/
+    height: 410px; /*altura*/
+    position: relative; /*Posicion relativa para hero porque es el padre de contenido-hero, asi el hijo puede tener posicion absoluta*/
+    margin-bottom: 2rem;
+} 
+
+.contenido-hero{
+    position: absolute;
+    background-color: rgba(0,0,0,.7); /*Sintaxis vieja, con mas soporte*/
+    background-color: rgb( 0 0 0 / 70%); /*Sintaxis nueva, cancela a la vieja si el navegador la lee*/
+    width: 100%;
+    height: 100%;
+
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenido-hero h2,
+.contenido-hero p {
+    color: var(--blanco);
+}
+/**scroll snap **/
+.servicio,
+.navegacion-principal,
+.formulario{
+    scroll-snap-align: center ;
+    scroll-snap-stop: always;
+}
+/**servicios**/
+@media (min-width: 768px) {
+    .servicios{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        /*(1fr = 1 fraccion, 3 fracciones porque son 3 sections) puede ser tambien 33.3%*/
+        column-gap: 1rem;
+    }
+}
+
+.servicio{
+display:flex;
+flex-direction: column;
+align-items: center;
+}
+
+.servicio h3{
+    color: var(--secundario);
+    font-weight: normal;
+}
+.servicio p{
+    line-height: 2;
+    text-align: center;
+}
+
+.servicio .iconos {
+    height: 15rem;
+    width: 15rem;
+    background-color: #FFC107;
+    border-radius: 50%;
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+/** Contacto **/
+.formulario{
+    background-color: var(--gris);
+    width: min( 60rem, 100% ); /** Funcion que escoge la variable mas pequeña, que es menor? 60 rem o el 100%? usa el que sea mas pequeño, es para ahorrarse mediaquerys**/
+    margin: 0 auto;/**para centrar horizontalmente**/
+    padding: 2rem;
+    border-radius: 1rem;
+}
+.formulario fieldset {
+    border: none;
+}
+.formulario legend {
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color:var(--primario)
+}
+@media(min-width: 768px){
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto auto 20rem;
+        column-gap: 1rem;   
+    }
+    .campo:nth-child(3),
+    .campo:nth-child(4){
+        grid-column: 1 / 3;
+    }
+}
+.campo {
+    margin-bottom: 1rem;
+}
+.campo label {
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block; /** para que se vayan alineando verticalmente o algo asi, video 49**/
+}
+.campo textarea{
+    height: 20rem;
+}
+.input-text {
+   width: 100%;
+   border: none;
+   padding: 1.5rem;
+   border-radius: .5rem;
+}
+
+/**Footer **/
+.footer{
+    text-align: center;
+}
